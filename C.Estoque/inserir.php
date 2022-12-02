@@ -2,20 +2,22 @@
 $host = "localhost";
 $user = "root";
 $pass = "";
-$db = "cadastro";
+$db = "estoque";
+$quanti = 0;
 
 $conn = new PDO("mysql:dbname=$db; host=$host; charset=utf8", $user, $pass);
 $Nome = $_POST["Nome"];
-$Rua = $_POST["Rua"];
-$Nome_do_Pai = $_POST["Nome_do_Pai"];
-$Nome_da_Mae = $_POST["Nome_da_Mae"];
+if(isset($_POST["descricao"])){
+    $desc = $_POST["descricao"];
+}else{
+    $desc = "";
+}
 $data = [
     'Nome' => $Nome,
-    'Rua' => $Rua,
-    'Nome_do_Pai' => $Nome_do_Pai,
-    'Nome_da_Mae' => $Nome_da_Mae,
+    'Quantidade' => $quanti,
+    'Descricao' => $desc
 ];
-$sql = "INSERT INTO pessoa (Nome, Rua, Nome_do_Pai, Nome_da_Mae) VALUES (:Nome, :Rua, :Nome_do_Pai, :Nome_da_Mae)";
+$sql = "INSERT INTO estoque (Nome, Quantidade, Descricao) VALUES (:Nome, :Quantidade, :Descricao)";
 $stmt= $conn->prepare($sql);
 $stmt->execute($data);
 echo $conn->errorInfo();

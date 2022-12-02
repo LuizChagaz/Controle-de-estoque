@@ -1,99 +1,80 @@
-<!DOCTYPE html>
-<html lang="pt">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="author" content="LuizChagaz">
-    <title>Cadastro e Apresentação</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="bootstrap/css/bootstrap-grid.min.css">
-    <link rel="stylesheet" href="bootstrap/css/bootstrap-reboot.min.css">
-</head>
+<?php require_once "head.php";?>
 <body>
-    <?php 
-        $host = "localhost";
-        $user = "root";
-        $pass = "";
-        $db = "cadastro";
-
-        $conn = new PDO("mysql:dbname=$db; host=$host; charset=utf8", $user, $pass);
-
-        $dados = $conn->query("SELECT Nome, Rua, Nome_do_Pai, Nome_da_Mae FROM pessoa");
+    <?php require_once "conexão.php";
+        $dados = $conn->query("SELECT Id_produto, Quantidade, Nome,Descricao FROM estoque");
     ?>
-    <form id="formi" method="POST">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroup-sizing-default">Nome</span>
-                    </div>
-                    <input name="Nome" id="Nome" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-                </div><div class="col-sm input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroup-sizing-default">Rua</span>
-                    </div>
-                    <input name="Rua" id="Rua" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-                </div>
+    <div class="container" >
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-9">
+                <table class="table" style="color: brown;">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Produto</th>
+                            <th scope="col">Quantidade</th>
+                            <th scope="col">Descrição</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>                        
+                    </tbody>
+                </table>
             </div>
-            <div class="row">
-                <div class="col-sm input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroup-sizing-default">Nome do pai</span>
-                    </div>
-                    <input name="Nome_do_Pai" id="Nome_do_Pai" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-                </div><div class="col-sm input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroup-sizing-default">Nome da mãe</span>
-                    </div>
-                    <input name="Nome_da_Mae" id="Nome_da_Mae" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+        </div>
+    </div>
+    <button type="button" class="but btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+        Adicionar Material
+    </button>
+    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Material</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="formi" method="POST">
+                        <div class="input-group mb-3">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">Nome</span>
+                                        </div>
+                                        <input id="val" name="Nome" type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1">
+                                    </div>
+                                    <div class="col">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">Descrição</span>
+                                        </div>
+                                        <input id="val" name="descricao" type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    <button id="entrar" type="button" class="btn btn-primary">Lançar</button>
                 </div>
             </div>
         </div>
-        <div id="msg"></div>
-        <button id="entrar">entrar</button>
-    </form>
-    <div>
-        <table>
-            <tr>
-                <th>Nome</th>
-                <th>Rua</th>
-                <th>Nome do Pai</th>
-                <th>Nome da Mãe</th>
-</tr>
-            <?php  foreach ($dados as $key => $value) {?>
-            <tr>
-                <th><?php echo $value["Nome"]?></th>
-                <th><?php echo $value["Rua"]?></th>
-                <th><?php echo $value["Nome_do_Pai"]?></th>
-                <th><?php echo $value["Nome_da_Mae"]?></th>
-            </tr>
-            <?php }?>
-        </table>
-        
     </div>
+
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="js/script.js"></script>
-    <script>
-        function pageload(){
-            const buttons = document.querySelectorAll("#entrar")
-            for (const button of buttons) {
-            button.addEventListener('click', function(event) {
-                event.preventDefault();
-                var form = document.querySelector("#formi");
-                $.ajax({
-                    url: "inserir.php",
-                    method: "post",
-                    data: $("#formi").serialize(),
-                    dataType: "text",
-                    success: function(){
-                    }
-                })
-            })
-            }
-        }
-        window.onload = pageload;
-    </script>
+    <script src="js/script.js"></script>
 </body>
 </html>

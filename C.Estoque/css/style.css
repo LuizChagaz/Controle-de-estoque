@@ -1,0 +1,13 @@
+html{
+    background-color: brown;
+    padding-top: 20px;
+    color: brown !important;
+}
+.but{
+    position: fixed;
+    height: 60px;
+    bottom: 10px;
+    right: 40px;
+    background-color: white !important;
+    color: brown !important;
+}
