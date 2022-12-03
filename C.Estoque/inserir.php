@@ -20,5 +20,4 @@ $data = [
 $sql = "INSERT INTO estoque (Nome, Quantidade, Descricao) VALUES (:Nome, :Quantidade, :Descricao)";
 $stmt= $conn->prepare($sql);
 $stmt->execute($data);
-echo $conn->errorInfo();
 ?>
