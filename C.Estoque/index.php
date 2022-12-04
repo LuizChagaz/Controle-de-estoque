@@ -6,9 +6,9 @@
     <div class="container" >
         <div class="row">
             <div class="col-sm-3"></div>
-            <div class="col-sm-9">
+            <div style="height: 500px; overflow-y: scroll;" class="col-sm-9">
                 <table class="table" style="color: brown;">
-                    <thead class="thead-dark">
+                    <thead id="table" class="thead-dark">
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Produto</th>
@@ -16,13 +16,8 @@
                             <th scope="col">Descrição</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>                        
+                    <tbody id='att'>
+
                     </tbody>
                 </table>
             </div>
