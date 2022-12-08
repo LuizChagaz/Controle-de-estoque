@@ -26,6 +26,23 @@
     <button type="button" class="but btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
         Adicionar Material
     </button>
+    
+    <div aria-live="polite" aria-atomic="true" style="position: relative;">
+        <div style="position: absolute; top: 0; left: 0;">
+            <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="7000">
+                <div class="toast-header">
+                <img src="" class="rounded mr-2" alt="...">
+                <strong class="mr-auto">Sistema</strong>
+                <small>11 mins ago</small>
+                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="toast-body">Inserção de dados feita com sucesso
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">

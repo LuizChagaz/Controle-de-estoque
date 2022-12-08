@@ -6,16 +6,22 @@ function dados(){
         num = 0;
         txt.forEach(value=> {
             num++;
-            html += '<tr><th>'+num+'</th><th>'+value["Nome"]+'</th><th>'+value["Quantidade"]+'</th><th>'+value["Descricao"]+'</th></tr>'
+            html += '<tr><th>'+num+'</th><th>'+value["Nome"]+'</th><th>'+value["Quantidade"]+'<button id="meno'+value["Id_produto"]+'" type="button" class="btn btn-danger">-</button><a id="mais'+value["Id_produto"]+'" type="button" class="btn btn-danger">+</a></th><th>'+value["Descricao"]+'</th></tr>'
         });
         table.innerHTML = html;
-        console.log(txt);
     }).catch((erro) => { console.error(erro); });
 }
-
 function pageload(){
-    dados()
-
+        
+        const att = document.querySelectorAll("button");
+        for (const atts of att){
+            atts.addEventListener('click', function(){
+                var ids = this.id;
+                tipo = ids.substring(0,4);
+                console.log(tipo)
+            });
+        }
+        dados()
     const buttons = document.querySelectorAll("#entrar")
     for (const button of buttons) {
         button.addEventListener('click', function(event) {
@@ -25,7 +31,9 @@ function pageload(){
                 body: form
             }).then((resposta) => resposta.text())
             .then((txt) => {
-                window.alert(txt);
+                if(txt == 'Foi'){
+                    $('.toast').toast('show');
+                }
                 dados();
             }).catch((erro) => { console.error(erro); });
         }) 
