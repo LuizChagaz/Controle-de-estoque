@@ -23,7 +23,7 @@
             </div>
         </div>
     </div>
-    <button type="button" class="but btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+    <button onclick="Pegarid()" type="button" class="but btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
         Adicionar Material
     </button>
     

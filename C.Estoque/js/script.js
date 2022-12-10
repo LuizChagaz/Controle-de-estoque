@@ -6,21 +6,29 @@ function dados(){
         num = 0;
         txt.forEach(value=> {
             num++;
-            html += '<tr><th>'+num+'</th><th>'+value["Nome"]+'</th><th>'+value["Quantidade"]+'<button id="meno'+value["Id_produto"]+'" type="button" class="btn btn-danger">-</button><a id="mais'+value["Id_produto"]+'" type="button" class="btn btn-danger">+</a></th><th>'+value["Descricao"]+'</th></tr>'
+            html += '<tr><th>'+num+'</th><th>'+value["Nome"]+'</th><th>'+value["Quantidade"]+'<button onclick="Pegarid()" id="meno'+value["Id_produto"]+'" type="button" class="btn btn-danger">-</button><button onclick="Pegarid()" id="mais'+value["Id_produto"]+'" type="button" class="btn btn-danger">+</button></th><th>'+value["Descricao"]+'</th></tr>'
         });
         table.innerHTML = html;
     }).catch((erro) => { console.error(erro); });
 }
+function Pegarid(){
+    var ids = event.srcElement.id;
+    var tipo = ids.substring(0,4);
+    var idl = ids.substring(4);
+    fetch("Add.php", {
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+         },
+        method: "POST",
+        body: JSON.stringify(ids)
+    }).then((resposta) => resposta.text())
+    .then((txt) => {
+        console.log(txt);
+    })
+    dados();
+}
 function pageload(){
-        
-        const att = document.querySelectorAll("button");
-        for (const atts of att){
-            atts.addEventListener('click', function(){
-                var ids = this.id;
-                tipo = ids.substring(0,4);
-                console.log(tipo)
-            });
-        }
         dados()
     const buttons = document.querySelectorAll("#entrar")
     for (const button of buttons) {
